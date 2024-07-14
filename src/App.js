@@ -9,6 +9,7 @@ const App = () => {
       <div className="app-layout">
         <Header />
         <Body />
+        {/* <SideNav /> */}
       </div>
     </>
   );

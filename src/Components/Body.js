@@ -1,44 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardContainer from "./CardContainer";
-import { data } from "../Utils/restaurant";
 import SearchFilter from "./SearchFilter";
 
-export const filteredData = data
-  .filter((result, index) => result.rating)
+const Body = () => {
+
+  const[apiData, setApiData] = useState([]);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  console.log(apiData);
+
+  const fetchRestaurantData = async () => {
+    try{
+      const response = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6126255&lng=77.04108959999999&&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+      const json = await response.json();
+      setApiData(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+      setListOfRestaurants(unfilteredData);
+    } catch(error) {
+      console.error("Error fetching data", error);
+    }
+   
+  }
+
+  useEffect(()=> {
+    fetchRestaurantData();
+  },[]);
+
+  const filteredData = apiData
+  .filter((result) => result.rating)
   .sort((a, b) => b.rating - a.rating)
   .map((result, index) => (
     <div className="card" key={index}>
       <img
-        src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg"
-        alt="img"
+        src={
+          `https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${result.cloudinaryImageId}`
+        }
       />
-      <h3>{result.restaurantName}</h3>
-      <p>{result.cuisine}</p>
-      <p>{result.rating} stars</p>
-      <p>ETA {result.etaMinutes}min</p>
+      <h3>{result.name}</h3>
+      <p>{result.cuisines}</p>
+      <p>{result.avgRating} stars</p>
+      <p>ETA {result.sla?.deliveryTime}min</p>
     </div>
   ));
-
-const Body = () => {
-  const unfilteredData = data.map((result, index) => (
+  
+  const unfilteredData = apiData.map((result, index) => (
     <div className="card" key={index}>
       <img
-        src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg"
-        alt="img"
+        src={
+          `https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${result.cloudinaryImageId}`
+        }
       />
-      <h3>{result.restaurantName}</h3>
-      <p>{result.cuisine}</p>
-      <p>{result.rating} stars</p>
-      <p>ETA {result.etaMinutes}min</p>
+      <h3>{result.name}</h3>
+      <p>{result.cuisines}</p>
+      <p>{result.avgRating} stars</p>
+      <p>ETA {result.sla?.deliveryTime}min</p>
     </div>
   ));
 
-  const [listOfRestaurants, setListOfRestaurants] = useState(unfilteredData);
-
+  console.log(apiData);
   return (
     <>
       <div className="body">
-        <SearchFilter setListOfRestaurants={setListOfRestaurants} />
+        <SearchFilter setListOfRestaurants={setListOfRestaurants} filteredData={filteredData} />
         <CardContainer listOfRestaurants={listOfRestaurants} />
       </div>
     </>

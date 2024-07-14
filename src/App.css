@@ -13,6 +13,11 @@
 
 .logo img {
   width: 80px;
+  cursor: pointer;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
 }
 
 .nav-items ul {

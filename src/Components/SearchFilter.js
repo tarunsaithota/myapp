@@ -1,7 +1,6 @@
 import React from "react";
-import { filteredData } from "./Body";
 
-const SearchFilter = ({setListOfRestaurants}) => {
+const SearchFilter = ({setListOfRestaurants, filteredData}) => {
     const filterHandler = (e) => {
         e.preventDefault();
         setListOfRestaurants(filteredData);
