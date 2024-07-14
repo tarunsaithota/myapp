@@ -6,13 +6,13 @@ const Body = () => {
 
   const[apiData, setApiData] = useState([]);
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  console.log(apiData);
 
   const fetchRestaurantData = async () => {
     try{
       const response = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6126255&lng=77.04108959999999&&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await response.json();
-      setApiData(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+      const restaurantData = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+      setApiData(restaurantData);
       setListOfRestaurants(unfilteredData);
     } catch(error) {
       console.error("Error fetching data", error);
@@ -55,7 +55,6 @@ const Body = () => {
     </div>
   ));
 
-  console.log(apiData);
   return (
     <>
       <div className="body">
