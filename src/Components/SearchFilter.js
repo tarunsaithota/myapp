@@ -9,7 +9,7 @@ const SearchFilter = ({setListOfRestaurants, filteredData}) => {
     <>
       <div className="search-filters">
         <div className="search-container">
-          <input type="search" style={{ borderRadius: "5px" }} />
+          <input type="search" style={{ borderRadius: "5px" }} />&nbsp;
           <button className="search-btn">Search</button>
         </div>
         <div className="filter-container">
