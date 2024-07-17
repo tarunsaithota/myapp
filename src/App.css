@@ -9,10 +9,12 @@
   justify-content: space-between;
   width: 100%;
   height: 20%;
+  align-items: center;
+  align-content: center;
 }
 
 .logo img {
-  width: 80px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -31,8 +33,14 @@
   list-style-type: none;
 }
 
+.nav-items ul :hover {
+  color: orange;
+  transform: scale3d(1.1);
+}
+
 .body {
   padding : 20px 10px;
+  height: 100vh;
 }
 
 .card {
@@ -40,7 +48,7 @@
   height: 400px;
   margin: 20px;
   border-radius: 15px;
-  background-color: bisque;
+  background-color: white;
 }
 
 .cuisines {
@@ -58,9 +66,9 @@
 }
 
 .card:hover {
-  border: 1.5px solid rgb(145, 116, 116);
+  border: 1.5px solid rgb(253, 251, 251);
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale3d(1.05);
 }
 
 .card img {
@@ -90,7 +98,7 @@ button {
 } 
 
 .filter-container {
-  padding-left: 40px;
+  padding-left: 4%;
 }
 
 .shimmer-container {
@@ -147,4 +155,26 @@ button {
 hr {
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+.aboutus-title {
+  height: 200px;
+  width: 500px;
+  padding-left: 30%;
+}
+
+.aboutus-card {
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  padding-left: 15%;
+}
+
+.aboutus-card h3 {
+  padding-left: 10px;
+}
+
+.card-right img {
+  width: 180px;
+  border-radius: 100px;
 }

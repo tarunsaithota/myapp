@@ -1,12 +1,15 @@
 import React from 'react';
+import UserClass from '../Components/UserClass';
 
-const AboutUS = () => {
-  return (
-    <>
-        <div>AboutUS</div>
-    </>
-
-  )
+class AboutUS extends React.Component {
+   
+  render() {
+    return(
+      <>
+        <UserClass />
+      </>
+    )
+  }
 }
 
 export default AboutUS;

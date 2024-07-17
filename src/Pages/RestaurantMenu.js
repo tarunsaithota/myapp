@@ -43,9 +43,9 @@ const RestaurantMenu = () => {
       <hr></hr>
 
       <ul>
-        <li style={{display: 'flex'}}>
-          <h2>Recommended:</h2>
-          <h3 style={{cursor: 'pointer', paddingLeft: '80%', color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
+        <li style={{display: 'flex', justifyContent: 'space-between'}}>
+          <h2 style={{color: "darkolivegreen"}}>Recommended:</h2>
+          <h3 style={{cursor: 'pointer', color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
         </li>
         {!collapse && <div>
         {recommendedItems.map((item) => (
@@ -78,9 +78,9 @@ const RestaurantMenu = () => {
       </ul>
 
       <ul>
-      <li style={{display: 'flex'}}>
-          <h2>Biryanis:</h2>
-          <h3 style={{cursor: 'pointer', paddingLeft: '87.5%' , color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
+      <li style={{display: 'flex', justifyContent: 'space-between'}}>
+          <h2 style={{color: "darkolivegreen"}}>Biryanis:</h2>
+          <h3 style={{cursor: 'pointer', color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
         </li>
         {collapse && <div>
         {biryaniItems.map((item) => (
@@ -113,9 +113,9 @@ const RestaurantMenu = () => {
       </ul>
 
       <ul>
-      <li style={{display: 'flex'}}>
-          <h2>Shawarma:</h2>
-          <h3 style={{cursor: 'pointer', paddingLeft: '85%', color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
+      <li style={{display: 'flex', justifyContent: 'space-between'}}>
+          <h2 style={{color: "darkolivegreen"}}>Shawarma:</h2>
+          <h3 style={{cursor: 'pointer', color: 'gray'}} onClick={(e)=> {setCollapse(!collapse)}}>V</h3>
         </li>
         {collapse && <div>
         {snackItems.map((item) => (

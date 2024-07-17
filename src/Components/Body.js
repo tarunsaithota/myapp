@@ -21,15 +21,15 @@ const Body = () => {
       setApiData(restaurantData);
       setListOfRestaurants(
         restaurantData.map((result, index) => (
-          <Link to={'/restaurant/' + result.info.id}><div className="card" key={result.info.id}>
+          <Link to={'/restaurant/' + result.info.id} style={{textDecoration: 'none', color: 'inherit'}}><div className="card" key={result.info.id}>
             <img
               src={`https://media-assets.swiggy.com/swiggy/image/upload/f1_lossy,f_auto,q_auto,w_660/${result.info.cloudinaryImageId}`}
               alt={result.name}
             />
             <h3>{result.info.name}</h3>
             <p className="cuisines">{result.info.cuisines.join(", ")}</p>
-            <p>{result.info.avgRating} stars</p>
-            <p>ETA {result.info.sla?.deliveryTime}min</p>
+            <p>⭐{result.info.avgRating} stars</p>
+            <p>⌛ETA {result.info.sla?.deliveryTime}min</p>
           </div></Link>
         ))
       );
@@ -46,16 +46,16 @@ const Body = () => {
     .filter((result) => result.info.avgRating)
     .sort((a, b) => b.info.avgRating - a.info.avgRating)
     .map((result, index) => (
-      <div className="card" key={index}>
+      <Link to={'/restaurant/' + result.info.id} style={{textDecoration: 'none', color: 'inherit'}}><div className="card" key={index}>
         <img
           src={`https://media-assets.swiggy.com/swiggy/image/upload/f1_lossy,f_auto,q_auto,w_660/${result.info.cloudinaryImageId}`}
           alt={result.name}
         />
         <h3>{result.info.name}</h3>
         <p className="cuisines">{result.info.cuisines.join(", ")}</p>
-        <p>{result.info.avgRating} stars</p>
-        <p>ETA {result.info.sla?.deliveryTime}min</p>
-      </div>
+        <p>⭐{result.info.avgRating} stars</p>
+        <p>⌛ETA {result.info.sla?.deliveryTime}min</p>
+      </div></Link>
     ));
 
   return (
