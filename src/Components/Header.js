@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import logo1 from '../logo1.jpg';
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 const Header = () => {
   const[btnName, setBtnName] = useState('Signin/Signup');
 
   const btnHandler = (e) => {
     e.preventDefault();
-    (btnName== 'Signin/Signup') ? setBtnName('Logout') : setBtnName('Signin/Signup');
+    (btnName=== 'Signin/Signup') ? setBtnName('Logout') : setBtnName('Signin/Signup');
   }
+
+  const onlineStatus = useOnlineStatus();
 
   return (
     <>
@@ -22,6 +25,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>{onlineStatus ? '🛜' : '🔴'}</li>
           <li><Link to='/' style={{textDecoration: 'none', color: 'inherit'}}>Home 🏡</Link></li>
           <li><Link to= '/aboutus' style={{textDecoration: 'none', color: 'inherit'}}>About Us 🌍 </Link></li>
           <li><Link to= '/contactus' style={{textDecoration: 'none', color: 'inherit'}} >Contact Us 📞</Link></li>

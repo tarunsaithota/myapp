@@ -6,8 +6,8 @@ const Shimmer = () => {
         <div className="shimmer-container">
             {[...Array(8)].map((_,index) => (
                 <div className="shimmer-card" key={index}>
-                    <img/>
-                    <h3 className="shimmer-card-h3"></h3>
+                    <img alt=""/>
+                    <p className="shimmer-card-h3"></p>
                     <p className="shimmer-card-p"></p>
                 </div>
             ))}

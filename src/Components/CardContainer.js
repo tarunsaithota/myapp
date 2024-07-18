@@ -1,6 +1,5 @@
 import React from "react";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router-dom";
 
 const CardContainer = ({listOfRestaurants}) => {
   if(listOfRestaurants.length===0){

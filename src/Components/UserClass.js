@@ -20,8 +20,8 @@ class UserClass extends React.Component {
     return (
       <>
         <div className="aboutus-page">
-          <div className="aboutus-title">
-            <center>
+          <center>
+            <div className="aboutus-title">
               <h1>AboutUS</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -29,17 +29,17 @@ class UserClass extends React.Component {
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat.
               </p>
-            </center>
-          </div>
+            </div>
+          </center>
           <div className="aboutus-card">
             <div className="card-left">
-            <h3> {this.state.userInfo.name} 😎</h3>
-            <p>🏢 {this.state.userInfo.company}</p>
-            <p>📍 {this.state.userInfo.location}</p>
-            <p>🌍 {this.state.userInfo.bio}</p>
+              <h3> {this.state.userInfo.name} 😎</h3>
+              <p>🏢 {this.state.userInfo.company}</p>
+              <p>📍 {this.state.userInfo.location}</p>
+              <p>🌍 {this.state.userInfo.bio}</p>
             </div>
             <div className="card-right">
-                <img src={this.state.userInfo.avatar_url} />
+              <img src={this.state.userInfo.avatar_url} alt="" />
             </div>
           </div>
         </div>
