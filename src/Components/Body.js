@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CardContainer from "./CardContainer";
 import SearchFilter from "./SearchFilter";
 import { Link } from "react-router-dom";
+import TopRestaurants from "./TopRestaurants";
 
 export const renderRestaurantCard = (result) => (
   <Link to={'/restaurant/' + result.info.id} style={{textDecoration: 'none', color: 'inherit'}}><div className="card" key={result.info.id}>
@@ -56,6 +57,7 @@ const Body = () => {
           apiData={apiData}
         />
         <CardContainer listOfRestaurants={listOfRestaurants} />
+        <TopRestaurants />
       </div>
     </>
   );
