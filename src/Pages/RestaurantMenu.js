@@ -3,111 +3,78 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [collapse, setCollapse] = useState(false);
+  const [collapsedCategories, setCollapsedCategories] = useState({});
+  const toggleCollapse = (index) => {
+    setCollapsedCategories((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
   const { resID } = useParams();
 
   const data = useRestaurantMenu(resID);
 
-  const itemCard = (item) => (
-    <>
-      <div key={item.card.info.id} className="menu-items">
-        <div className="left-side">
-          <li>
-            <h2>{item.card.info.name}</h2>
-          </li>
-          <li>💰{item.card.info.price / 100}</li>
-          <li style={{ color: "orange" }}>
-            ⭐{item.card.info.ratings.aggregatedRating.rating} rating
-          </li>
-          <li>
-            <p>{item.card.info.description}</p>
-          </li>
-          <button>Add to cart</button>
-        </div>
-        <div className="right-side">
-          <img
-            src={`https://media-assets.swiggy.com/swiggy/image/upload/f1_lossy,f_auto,q_auto,w_660/${item.card.info.imageId}`}
-            alt={item.card.info.name}
-          />
-        </div>
-      </div>
-      <hr></hr>
-    </>
-  );
-
-  const { name, avgRating, costForTwoMessage, cuisines, sla, feeDetails } =
-    data?.data?.cards[2]?.card?.card?.info || {};
-  const recommendedItems =
-    data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card?.itemCards || [];
-  const biryaniItems =
-    data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card
-      ?.card?.itemCards || [];
-  const snackItems =
-    data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]?.card
-      ?.card?.itemCards || [];
+  const { name, avgRating, costForTwoMessage, cuisines, sla, feeDetails } = data?.data?.cards[2]?.card?.card?.info || {};
+  const categoryItems =
+    data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (res) =>
+        res.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   return (
     <div className="menu">
-      <h1>{name}</h1>
-      {name && (
-        <>
-          <p>
-            ⭐ {avgRating} rating ▪️ 💰 {costForTwoMessage}{" "}
-          </p>
-          <p style={{ color: "orange" }}>{cuisines?.join(", ")}</p>
-          <p>
-            🚚 {sla?.lastMileTravelString} 💰{feeDetails?.amount / 100} Delivery
-            fee will apply{" "}
-          </p>
-        </>
-      )}
-      <hr></hr>
+      <div>
+        <h1>{name}</h1>
+        {name && (
+          <>
+            <p>⭐ {avgRating} rating ▪️ 💰 {costForTwoMessage}{" "}</p>
+            <p style={{ color: "orange" }}>{cuisines?.join(", ")}</p>
+            <p>🚚 {sla?.lastMileTravelString} 💰{feeDetails?.amount / 100}{" "} Delivery fee will apply{" "}</p>
+          </>
+        )}
 
-      <ul>
-        <li style={{ display: "flex", justifyContent: "space-between" }}>
-          <h2 style={{ color: "darkolivegreen" }}>Recommended:</h2>
-          <h3
-            style={{ cursor: "pointer", color: "gray" }}
-            onClick={(e) => {
-              setCollapse(!collapse);
-            }}
-          >
-            V
-          </h3>
-        </li>
-        {!collapse && <div>{recommendedItems.map(itemCard)}</div>}
-      </ul>
-
-      <ul>
-        <li style={{ display: "flex", justifyContent: "space-between" }}>
-          <h2 style={{ color: "darkolivegreen" }}>Biryanis:</h2>
-          <h3
-            style={{ cursor: "pointer", color: "gray" }}
-            onClick={(e) => {
-              setCollapse(!collapse);
-            }}
-          >
-            V
-          </h3>
-        </li>
-        {collapse && <div>{biryaniItems.map(itemCard)}</div>}
-      </ul>
-
-      <ul>
-        <li style={{ display: "flex", justifyContent: "space-between" }}>
-          <h2 style={{ color: "darkolivegreen" }}>Shawarma:</h2>
-          <h3
-            style={{ cursor: "pointer", color: "gray" }}
-            onClick={(e) => {
-              setCollapse(!collapse);
-            }}
-          >
-            V
-          </h3>
-        </li>
-        {collapse && <div>{snackItems.map(itemCard)}</div>}
-      </ul>
+        {categoryItems?.map((items, index) => (
+          <div key={index} className="category-item" style={{}}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                margin: "10px 0px",
+                borderBottom: '0.5px solid lightGray',
+                cursor: "pointer"
+              }}
+              onClick={() => toggleCollapse(index)}
+            >
+              <h1 style={{ color: "darkolivegreen" }}>{items.card.card.title}</h1>
+              <h1>{collapsedCategories[index] ? "🔺" : "🔻"}</h1>
+            </div>
+            {collapsedCategories[index] && <div>
+              {items.card?.card?.itemCards?.map((item) => (
+                <>
+                  <div key={item.card.info.id} style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div>
+                      <p style={{ fontWeight: "bolder" }}>{item.card.info.name}</p>
+                      <p>💰{item.card.info.price/100}</p>
+                      <p>⭐{item.card.info.ratings.aggregatedRating.rating} rating</p>
+                      <p>{item.card.info.description}</p>
+                    </div>
+                    <div>
+                      <button style={{ position: "absolute", backgroundColor: 'orange' }}>Add to cart</button>
+                      <img
+                        src={`https://media-assets.swiggy.com/swiggy/image/upload/f1_lossy,f_auto,q_auto,w_660/${item.card.info.imageId}`}
+                        style={{paddingTop:'15px', width: "80px", height: '80px' }}
+                      />
+                    </div>
+                  </div>
+                  <hr></hr>
+                </>
+              ))}
+            </div>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

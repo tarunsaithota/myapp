@@ -9,7 +9,7 @@ const useFetchTopRestaurants = () => {
     );
     const json = await response.json();
     const data =
-        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+        json.data.cards[1].card.card?.gridElements?.infoWithStyle?.restaurants;
     setResData(data);
   };
 

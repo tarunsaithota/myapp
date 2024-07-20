@@ -56,7 +56,7 @@ const Body = () => {
           filteredData={filteredData}
           apiData={apiData}
         />
-        <CardContainer listOfRestaurants={listOfRestaurants} />
+        <CardContainer apiData={apiData} listOfRestaurants={listOfRestaurants} />
         <TopRestaurants />
       </div>
     </>

@@ -11,7 +11,7 @@ const TopRestaurants = () => {
         Restaurants with online food delivery🍴
       </h1>
       <div className="card-container">
-            {resData.map(renderRestaurantCard)}
+            {resData?.map(renderRestaurantCard)}
       </div>
     </>
   );

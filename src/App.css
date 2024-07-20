@@ -35,7 +35,6 @@
 
 .nav-items ul :hover {
   color: orange;
-  transform: scale3d(1.1);
 }
 
 .body {
@@ -49,6 +48,7 @@
   margin: 30px;
   border-radius: 15px;
   background-color: white;
+  padding: 10px;
 }
 
 .cuisines {
@@ -62,13 +62,11 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  padding: 10px;
 }
 
 .card:hover {
-  border: 1.5px solid rgb(253, 251, 251);
   cursor: pointer;
-  transform: scale3d(1.05);
 }
 
 .card img {
@@ -178,5 +176,4 @@ hr {
 
 .search-btn, .filter-btn{
   background-color: rgb(252, 233, 225);
-  color: orange;
 }

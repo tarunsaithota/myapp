@@ -30,7 +30,7 @@ const SearchFilter = ({ setListOfRestaurants, filteredData, apiData }) => {
             onChange={(e) => setSearchText(e.target.value)}
             onClick={(e) => setPlaceHolder("")}
             onBlur={(e) => setPlaceHolder("🔍 Search")}
-            style={{ borderRadius: "5px", height: '25px', width: '250px'}}
+            style={{ borderRadius: "5px", height: '25px', width: '250px', paddingLeft: '10px'}}
           />
           &nbsp;
           <button className="search-btn" onClick={searchhandler} style={{height: '30px'}}>
