@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import logo1 from '../logo1.jpg';
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const[btnName, setBtnName] = useState('Signin/Signup');
@@ -12,6 +13,8 @@ const Header = () => {
   }
 
   const onlineStatus = useOnlineStatus();
+
+  const cart = useSelector((store) => store.cart.items);
 
   return (
     <>
@@ -29,7 +32,7 @@ const Header = () => {
           <li><Link to='/' style={{textDecoration: 'none', color: 'inherit'}}>Home 🏡</Link></li>
           <li><Link to= '/aboutus' style={{textDecoration: 'none', color: 'inherit'}}>About Us 🌍 </Link></li>
           <li><Link to= '/contactus' style={{textDecoration: 'none', color: 'inherit'}} >Contact Us 📞</Link></li>
-          <li><Link to= '/cart' style={{textDecoration: 'none', color: 'inherit'}} >Cart 🛒</Link></li>
+          <li><Link to= '/cart' style={{textDecoration: 'none', color: 'inherit'}} >Cart 🛒- {cart.length}</Link></li>
           <li><Link className='signin-signup' style={{textDecoration: "none", color: 'inherit'}} onClick={btnHandler}>{btnName} 📴</Link></li>
         </ul>
       </div>

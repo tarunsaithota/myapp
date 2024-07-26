@@ -2,8 +2,8 @@ import React from "react";
 import App from "./App";
 
 
-  <React.StrictMode>
+<React.StrictMode>
+  
+    <App />
 
-      <App />
-
-  </React.StrictMode>
+</React.StrictMode>;

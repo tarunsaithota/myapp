@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/cartSlice";
+
+
+
+
+
 
 const RestaurantMenu = () => {
+  const dispatch = useDispatch();
   const [collapsedCategories, setCollapsedCategories] = useState({});
   const toggleCollapse = (index) => {
     setCollapsedCategories((prev) => ({
@@ -22,6 +30,12 @@ const RestaurantMenu = () => {
         res.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
+  const listItems = categoryItems?.card?.card?.itemCards?.card?.info
+  console.log(listItems);
+  const handleCart = (item) => {
+    dispatch(addItem(item));
+  }
+
 
   return (
     <div className="menu">
@@ -61,7 +75,7 @@ const RestaurantMenu = () => {
                       <p>{item.card.info.description}</p>
                     </div>
                     <div>
-                      <button style={{ position: "absolute", backgroundColor: 'orange' }}>Add to cart</button>
+                      <button style={{ position: "absolute", backgroundColor: 'orange' }} onClick={() => handleCart(item)}>Add to cart</button>
                       <img
                         src={`https://media-assets.swiggy.com/swiggy/image/upload/f1_lossy,f_auto,q_auto,w_660/${item.card.info.imageId}`}
                         style={{paddingTop:'15px', width: "80px", height: '80px' }}

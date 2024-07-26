@@ -8,16 +8,20 @@ import Header from "./Components/Header";
 import Body from "./Components/Body";
 import RestaurantMenu from "./Pages/RestaurantMenu";
 import Cart from "./Components/Cart";
+import { Provider } from "react-redux";
+import AppStore from "./Utils/AppStore";
 
 const AboutUS = React.lazy(()=>import('./Pages/AboutUS'));
 
 const App = () => {
   return (
     <>
+    <Provider store={AppStore}>
       <div className="app-layout">
         <Header />
         <Outlet />
       </div>
+      </Provider>
     </>
   );
 };
