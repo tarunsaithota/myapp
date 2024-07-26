@@ -1,4 +1,78 @@
-# Getting Started with Create React App
+# MyApp
+
+MyApp is a web application similar to Swiggy that allows users to view restaurants in a specific area, explore their menus, and add items to a cart. The project is built using JavaScript, React, and CSS, without any CSS frameworks like Tailwind, Bootstrap, or MUI.
+You can see the live version of the app here - https://thota-s-kitchen.web.app/.
+
+## Table of Contents
+- [Features](#features)
+- [Concepts Covered](#concepts-covered)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Screenshots](#screenshots)
+
+## Features
+- View restaurants in a specific area via API calls.
+- View restaurant menus with details such as description, rate, and ratings.
+- Add menu items to the cart.
+- Header component with navigation to About Us, Contact Us, and Cart pages.
+
+## Concepts Covered
+- Redux for state management.
+- Functional and class-based components.
+- Browser Router configuration.
+- State management with the help of hooks.
+- Custom hooks.
+- Babel and Webpack for module bundling and code transpilation.
+- Common CSS for styling.
+
+## Installation
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/tarunsaithota/myapp.git
+    cd myapp
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+## Usage
+To start the development server:
+```sh
+npm start
+```
+This will run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Deployment
+To build the app for production:
+```sh
+npm run build
+```
+This will create an optimized production build in the `build` folder.
+
+To deploy the app, you can use Firebase Hosting, Netlify, Vercel, or any static site hosting service. For Firebase Hosting, follow these steps:
+
+1. Install Firebase CLI if you haven't already:
+    ```sh
+    npm install -g firebase-tools
+    ```
+
+2. Initialize Firebase in your project:
+    ```sh
+    firebase init
+    ```
+
+3. Deploy to Firebase:
+    ```sh
+    firebase deploy
+    ```
+
+## Screenshots
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
